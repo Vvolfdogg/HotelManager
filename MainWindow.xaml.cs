@@ -24,5 +24,11 @@ namespace HotelManager
         {
             InitializeComponent();
         }
+
+        private void btnVisits_Click(object sender, RoutedEventArgs e)
+        {
+            var visits = new HMS();
+            visits.Show();
+        }
     }
 }
