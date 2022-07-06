@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HotelManager"
         mc:Ignorable="d"
-        Title="HMS" Height="450" Width="800" WindowStartupLocation="CenterOwner">
+        Title="HMS" Height="480" Width="800" WindowStartupLocation="CenterOwner">
     <Grid>
         <DataGrid x:Name="gridVisits" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="349,227,10,10" AutoGenerateColumns="False">
             <DataGrid.Columns>
@@ -23,7 +23,7 @@
         <Label Content="Phone Number:" HorizontalAlignment="Left" Margin="45,61,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.494,0.525"/>
         <TextBox x:Name="txtPhone" HorizontalAlignment="Left" Margin="164,65,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="128"/>
         <Button x:Name="btnAdd" Content="Add Client" HorizontalAlignment="Left" Margin="45,92,0,0" VerticalAlignment="Top" Height="22" Click="btnAdd_Click" Width="247"/>
-        <DataGrid x:Name="gridClients" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="349,5,10,212"/>
+        <DataGrid x:Name="gridClients" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="349,5,10,212" SelectionChanged="gridClients_SelectionChanged_1"/>
         <Label Content="Client ID:" HorizontalAlignment="Left" Margin="10,244,0,0" VerticalAlignment="Top" Height="24"/>
         <TextBox x:Name="txtClient" HorizontalAlignment="Left" Height="20" Margin="74,248,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="53"/>
         <Label Content="Room ID:" HorizontalAlignment="Left" Margin="10,275,0,0" VerticalAlignment="Top" Height="30"/>

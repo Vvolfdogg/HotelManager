@@ -24,12 +24,25 @@ namespace HotelManager
             InitializeComponent();
 
             HotelManagementDBEntities db = new HotelManagementDBEntities();
-            
+
             var visits = from v in db.Visits
-                         select v;
+                    select v;
+                    /*{
+                        //VisitId = v.Id_visit,
+                        VisitClientID = v.Id_client,
+                        VisitRoomID = v.Id_room,
+                        VisitCheckIn = v.Check_in,
+                        VisitCheckOut = v.Check_out
+                    };*/
 
             var clients = from c in db.Clients
-                          select c;
+                    select new
+                    {
+                        ClientID = c.Id_client,
+                        ClientName = c.Name,
+                        ClientSurname = c.Surname,
+                        ClientPhone = c.Phone_number
+                    }; //c;
 
             /*foreach (var visit in visits)
             {
@@ -66,11 +79,13 @@ namespace HotelManager
             {
                 Id_client = Convert.ToInt32(txtClient.Text),
                 Id_room = Convert.ToInt32(txtRoom.Text),
-                //Check_in = txtCheckIn.Text,
+                Check_in = Convert.ToDateTime(txtCheckIn.Text)
             };
 
             db.Visits.Add(visitObject);
             db.SaveChanges();
+
+            this.gridVisits.ItemsSource = db.Visits.ToList();
         }
 
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
@@ -81,6 +96,25 @@ namespace HotelManager
         private void btnUpdateVisit_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void gridClients_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        {
+            if (this.gridClients.SelectedIndex >= 0)
+            {
+                if (this.gridClients.SelectedItems.Count >= 0)
+                {
+                    //System.Type typ = this.gridClients.SelectedItems[0].GetType();
+                    //Console.WriteLine(typ);
+                    if (this.gridClients.SelectedItems[0].GetType() == typeof(Client))
+                    {
+                        Client c = (Client)this.gridClients.SelectedItems[0];
+                        this.txtName_Copy.Text = c.Name;
+                        this.txtSur_Copy.Text = c.Surname;
+                        this.txtPhone_Copy.Text = c.Phone_number;
+                    }
+                }
+            }
         }
     }
 }

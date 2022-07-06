@@ -10,31 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace HotelManager
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for Rooms.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Rooms : Window
     {
-        public MainWindow()
+        public Rooms()
         {
             InitializeComponent();
-        }
-
-        private void btnVisits_Click(object sender, RoutedEventArgs e)
-        {
-            var visits = new HMS();
-            visits.Show();
-        }
-
-        private void btnRooms_Click(object sender, RoutedEventArgs e)
-        {
-            var rooms = new Rooms();
-            rooms.Show();
         }
     }
 }
