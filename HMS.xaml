@@ -49,5 +49,7 @@
         <Label Content="Check Out:" HorizontalAlignment="Left" Margin="135,369,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="txtCheckOut_Copy" HorizontalAlignment="Left" Margin="208,371,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Height="22"/>
         <Button x:Name="btnUpdateVisit" Content="Update Visit" HorizontalAlignment="Left" Margin="45,402,0,0" VerticalAlignment="Top" Height="22" Click="btnUpdateVisit_Click" Width="247"/>
+        <TextBox x:Name="txtClientId" HorizontalAlignment="Left" Margin="8,200,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="31" Height="22"/>
+        <TextBox x:Name="txtVisitId" HorizontalAlignment="Left" Margin="8,402,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="31" Height="22"/>
     </Grid>
 </Window>

@@ -90,7 +90,23 @@ namespace HotelManager
 
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
+            HotelManagementDBEntities db = new HotelManagementDBEntities();
 
+            var row = from c in db.Clients
+                      where c.Id_client == Convert.ToInt32(txtClientId.Text)
+                      select c;
+
+            Client client = row.SingleOrDefault();
+
+            if(client != null)
+            {
+                client.Name = txtName.Text;
+                client.Surname = txtSur.Text;
+                client.Phone_number = txtPhone.Text;
+            }
+
+            db.SaveChanges();
+            this.gridVisits.ItemsSource = db.Visits.ToList();
         }
 
         private void btnUpdateVisit_Click(object sender, RoutedEventArgs e)
