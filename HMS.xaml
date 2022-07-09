@@ -7,49 +7,41 @@
         mc:Ignorable="d"
         Title="HMS" Height="480" Width="800" WindowStartupLocation="CenterOwner">
     <Grid>
-        <DataGrid x:Name="gridVisits" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="349,227,10,10" AutoGenerateColumns="False">
+        <DataGrid x:Name="gridVisits" Margin="349,227,10,10" AutoGenerateColumns="False" SelectionChanged="gridVisits_SelectionChanged">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Id" Binding="{Binding Id_visit}"/>
+                <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
                 <DataGridTextColumn Header="ClientId" Binding="{Binding Id_client}"/>
                 <DataGridTextColumn Header="RoomId" Binding="{Binding Id_room}"/>
                 <DataGridTextColumn Header="CheckIn" Binding="{Binding Check_in}"/>
                 <DataGridTextColumn Header="CheckOut" Binding="{Binding Check_out}"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Label Content="Name:" HorizontalAlignment="Left" Margin="45,10,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtName" HorizontalAlignment="Left" Margin="164,14,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="128"/>
-        <Label Content="Surname:" HorizontalAlignment="Left" Margin="45,36,0,0" VerticalAlignment="Top" Height="25"/>
-        <TextBox x:Name="txtSur" HorizontalAlignment="Left" Margin="164,40,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="128"/>
-        <Label Content="Phone Number:" HorizontalAlignment="Left" Margin="45,61,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.494,0.525"/>
-        <TextBox x:Name="txtPhone" HorizontalAlignment="Left" Margin="164,65,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="128"/>
-        <Button x:Name="btnAdd" Content="Add Client" HorizontalAlignment="Left" Margin="45,92,0,0" VerticalAlignment="Top" Height="22" Click="btnAdd_Click" Width="247"/>
-        <DataGrid x:Name="gridClients" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="349,5,10,212" SelectionChanged="gridClients_SelectionChanged_1"/>
-        <Label Content="Client ID:" HorizontalAlignment="Left" Margin="10,244,0,0" VerticalAlignment="Top" Height="24"/>
-        <TextBox x:Name="txtClient" HorizontalAlignment="Left" Height="20" Margin="74,248,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="53"/>
-        <Label Content="Room ID:" HorizontalAlignment="Left" Margin="10,275,0,0" VerticalAlignment="Top" Height="30"/>
-        <TextBox x:Name="txtRoom" HorizontalAlignment="Left" Height="22" Margin="74,279,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="53"/>
-        <Label Content="Check In:" HorizontalAlignment="Left" Margin="135,244,0,0" VerticalAlignment="Top" Height="28"/>
-        <TextBox x:Name="txtCheckIn" HorizontalAlignment="Left" Margin="208,248,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Height="20" RenderTransformOrigin="0.507,0.515"/>
-        <Label Content="Check Out:" HorizontalAlignment="Left" Margin="135,277,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtCheckOut" HorizontalAlignment="Left" Margin="208,279,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Height="22"/>
-        <Button x:Name="btnAddVisit" Content="Add Visit" HorizontalAlignment="Left" Margin="45,310,0,0" VerticalAlignment="Top" Height="22" Click="btnAddVisit_Click"  Width="247"/>
-        <Label Content="Name:" HorizontalAlignment="Left" Margin="45,118,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtName_Copy" HorizontalAlignment="Left" Margin="164,122,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="128"/>
-        <Label Content="Surname:" HorizontalAlignment="Left" Margin="45,144,0,0" VerticalAlignment="Top" Height="25"/>
-        <TextBox x:Name="txtSur_Copy" HorizontalAlignment="Left" Margin="164,148,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="128"/>
-        <Label Content="Phone Number:" HorizontalAlignment="Left" Margin="45,169,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.494,0.525"/>
-        <TextBox x:Name="txtPhone_Copy" HorizontalAlignment="Left" Margin="164,173,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="128"/>
-        <Button x:Name="btnUpdate" Content="Update Selected Client" HorizontalAlignment="Left" Margin="45,200,0,0" VerticalAlignment="Top" Height="22" Click="btnUpdate_Click" Width="247"/>
-        <Label Content="Client ID:" HorizontalAlignment="Left" Margin="10,336,0,0" VerticalAlignment="Top" Height="24"/>
-        <TextBox x:Name="txtClient_Copy" HorizontalAlignment="Left" Height="20" Margin="74,340,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="53"/>
-        <Label Content="Room ID:" HorizontalAlignment="Left" Margin="10,367,0,0" VerticalAlignment="Top" Height="30"/>
-        <TextBox x:Name="txtRoom_Copy" HorizontalAlignment="Left" Height="22" Margin="74,371,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="53"/>
-        <Label Content="Check In:" HorizontalAlignment="Left" Margin="135,336,0,0" VerticalAlignment="Top" Height="28"/>
-        <TextBox x:Name="txtCheckIn_Copy" HorizontalAlignment="Left" Margin="208,340,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Height="20" RenderTransformOrigin="0.507,0.515"/>
-        <Label Content="Check Out:" HorizontalAlignment="Left" Margin="135,369,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtCheckOut_Copy" HorizontalAlignment="Left" Margin="208,371,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Height="22"/>
-        <Button x:Name="btnUpdateVisit" Content="Update Visit" HorizontalAlignment="Left" Margin="45,402,0,0" VerticalAlignment="Top" Height="22" Click="btnUpdateVisit_Click" Width="247"/>
-        <TextBox x:Name="txtClientId" HorizontalAlignment="Left" Margin="8,200,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="31" Height="22"/>
-        <TextBox x:Name="txtVisitId" HorizontalAlignment="Left" Margin="8,402,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="31" Height="22"/>
+        <Label Content="Name:" HorizontalAlignment="Left" Margin="45,39,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtName" HorizontalAlignment="Left" Margin="164,43,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="128"/>
+        <Label Content="Surname:" HorizontalAlignment="Left" Margin="45,65,0,0" VerticalAlignment="Top" Height="25"/>
+        <TextBox x:Name="txtSur" HorizontalAlignment="Left" Margin="164,69,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="128"/>
+        <Label Content="Phone Number:" HorizontalAlignment="Left" Margin="45,90,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.494,0.525"/>
+        <TextBox x:Name="txtPhone" HorizontalAlignment="Left" Margin="164,94,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="128"/>
+        <Button x:Name="btnAdd" Content="Add Client" HorizontalAlignment="Left" Margin="50,121,0,0" VerticalAlignment="Top" Height="22" Click="btnAdd_Click" Width="119"/>
+        <DataGrid x:Name="gridClients" Margin="349,5,10,212" SelectionChanged="gridClients_SelectionChanged_1"/>
+        <Label Content="Client ID:" HorizontalAlignment="Left" Margin="47,231,0,0" VerticalAlignment="Top" Height="24"/>
+        <TextBox x:Name="txtClient" HorizontalAlignment="Left" Height="22" Margin="166,231,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="53"/>
+        <Label Content="Room ID:" HorizontalAlignment="Left" Margin="48,260,0,0" VerticalAlignment="Top" Height="30"/>
+        <TextBox x:Name="txtRoom" HorizontalAlignment="Left" Height="22" Margin="166,260,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="53"/>
+        <Label Content="Check In:" HorizontalAlignment="Left" Margin="47,285,0,0" VerticalAlignment="Top" Height="28"/>
+        <TextBox x:Name="txtCheckIn" HorizontalAlignment="Left" Margin="166,288,0,0" TextWrapping="Wrap" Text="24/06/2022" VerticalAlignment="Top" Width="134" Height="22" RenderTransformOrigin="0.507,0.515"/>
+        <Label Content="Check Out:" HorizontalAlignment="Left" Margin="47,313,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtCheckOut" HorizontalAlignment="Left" Margin="166,315,0,0" TextWrapping="Wrap" Text="10/07/2022" VerticalAlignment="Top" Width="134" Height="22"/>
+        <Button x:Name="btnAddVisit" Content="Add Visit" HorizontalAlignment="Left" Margin="47,345,0,0" VerticalAlignment="Top" Height="22" Click="btnAddVisit_Click"  Width="124"/>
+        <Label Content="Client ID for UPDATE / DELETE:" HorizontalAlignment="Left" Margin="45,149,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btnUpdate" Content="Update Client" HorizontalAlignment="Left" Margin="50,186,0,0" VerticalAlignment="Top" Height="22" Click="btnUpdate_Click" Width="119"/>
+        <Button x:Name="btnUpdateVisit" Content="Update Visit" HorizontalAlignment="Left" Margin="47,403,0,0" VerticalAlignment="Top" Height="22" Click="btnUpdateVisit_Click" Width="124"/>
+        <TextBox x:Name="txtClientId" HorizontalAlignment="Left" Margin="261,151,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="31" Height="22"/>
+        <TextBox x:Name="txtVisitId" HorizontalAlignment="Left" Margin="230,374,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="32" Height="22"/>
+        <Button x:Name="btnLoad" Content="Load Clients" HorizontalAlignment="Left" Margin="173,121,0,0" VerticalAlignment="Top" Height="22" Click="btnLoad_Click" Width="119"/>
+        <Button x:Name="btnDelete" Content="Delete Client" HorizontalAlignment="Left" Margin="173,186,0,0" VerticalAlignment="Top" Height="22" Click="btnDelete_Click" Width="119"/>
+        <Label Content="Visit ID for UPDATE / DELETE:" HorizontalAlignment="Left" Margin="47,372,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btnLoadVisit" Content="Load Visits" HorizontalAlignment="Left" Margin="176,345,0,0" VerticalAlignment="Top" Height="22" Click="btnLoadVisit_Click"  Width="124"/>
+        <Button x:Name="btnDeleteVisit" Content="Delete Visit" HorizontalAlignment="Left" Margin="176,403,0,0" VerticalAlignment="Top" Height="22" Click="btnDeleteVisit_Click" Width="124"/>
     </Grid>
 </Window>

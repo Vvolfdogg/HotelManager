@@ -7,7 +7,22 @@
         mc:Ignorable="d"
         Title="Rooms" Height="450" Width="800">
     <Grid>
-        <DataGrid d:ItemsSource="{d:SampleData ItemCount=5}"/>
+        <DataGrid x:Name="gridRooms" AutoGenerateColumns="False" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="10,10,542,10">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
+                <DataGridTextColumn Header="Number" Binding="{Binding Number}"/>
+                <DataGridTextColumn Header="Size" Binding="{Binding Id_size}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <DataGrid x:Name="gridRoomPrices" AutoGenerateColumns="False" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="271,10,271,10">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Size" Binding="{Binding Id_size}"/>
+                <DataGridTextColumn Header="Price" Binding="{Binding Price}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button x:Name="OccupiedRooms" Click="OccupiedRooms_Click" Content="Occupied Rooms" HorizontalAlignment="Left" Margin="601,46,0,0" VerticalAlignment="Top" Height="57" Width="131"/>
+        <TextBox x:Name="txtOccupied" HorizontalAlignment="Left" Margin="601,164,0,0" TextWrapping="Wrap" Text="11/07/2022" VerticalAlignment="Top" Width="131"/>
+        <Label Content="Today:" HorizontalAlignment="Left" Margin="601,133,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>

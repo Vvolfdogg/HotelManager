@@ -7,9 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Button x:Name="btnVisits" Content="Load Data" HorizontalAlignment="Left" Margin="174,129,0,0" VerticalAlignment="Top" Click="btnVisits_Click"  Height="22" Width="83"/>
-        <Label Content="See Visits" HorizontalAlignment="Left" Margin="174,0,0,0" VerticalAlignment="Center"/>
-        <Button x:Name="btnRooms" Content="Rooms" HorizontalAlignment="Left" Margin="303,214,0,0" VerticalAlignment="Top" Click="btnRooms_Click"  Height="22" Width="83"/>
-        <Label Content="See Visits" HorizontalAlignment="Left" Margin="303,289,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btnVisits" Content="Clients" HorizontalAlignment="Left" Margin="151,0,0,0" VerticalAlignment="Center" Click="btnVisits_Click"  Height="258" Width="162"/>
+        <Button x:Name="btnRooms" Content="Rooms" HorizontalAlignment="Left" Margin="479,0,0,0" VerticalAlignment="Center" Click="btnRooms_Click"  Height="258" Width="162"/>
     </Grid>
 </Window>
