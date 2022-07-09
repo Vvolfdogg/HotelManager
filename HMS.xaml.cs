@@ -23,7 +23,7 @@ namespace HotelManager
         {
             InitializeComponent();
 
-            HotelManagementDBEntities db = new HotelManagementDBEntities();
+            HotelManagerDBEntities db = new HotelManagerDBEntities();
 
             var visits = from v in db.Visits
                     select v;
@@ -38,7 +38,7 @@ namespace HotelManager
             var clients = from c in db.Clients
                     select new
                     {
-                        ClientID = c.Id_client,
+                        ClientID = c.Id,
                         ClientName = c.Name,
                         ClientSurname = c.Surname,
                         ClientPhone = c.Phone_number
@@ -55,7 +55,7 @@ namespace HotelManager
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
-            HotelManagementDBEntities db = new HotelManagementDBEntities();
+            HotelManagerDBEntities db = new HotelManagerDBEntities();
 
             Client clientObject = new Client()
             {
@@ -73,7 +73,7 @@ namespace HotelManager
 
         private void btnAddVisit_Click(object sender, RoutedEventArgs e)
         {
-            HotelManagementDBEntities db = new HotelManagementDBEntities();
+            HotelManagerDBEntities db = new HotelManagerDBEntities();
 
             Visit visitObject = new Visit()
             {
@@ -90,10 +90,10 @@ namespace HotelManager
 
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
-            HotelManagementDBEntities db = new HotelManagementDBEntities();
+            HotelManagerDBEntities db = new HotelManagerDBEntities();
 
             var row = from c in db.Clients
-                      where c.Id_client == Convert.ToInt32(txtClientId.Text)
+                      where c.Id == Convert.ToInt32(txtClientId.Text)
                       select c;
 
             Client client = row.SingleOrDefault();

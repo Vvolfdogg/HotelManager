@@ -1,0 +1,262 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="HotelManagementDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="30" />
+          <Property Name="Surname" Type="varchar" MaxLength="50" />
+          <Property Name="Phone_number" Type="varchar" MaxLength="11" />
+        </EntityType>
+        <EntityType Name="Room_prices">
+          <Key>
+            <PropertyRef Name="Id_size" />
+          </Key>
+          <Property Name="Id_size" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Price" Type="money" />
+        </EntityType>
+        <EntityType Name="Rooms">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Number" Type="varchar" MaxLength="3" />
+          <Property Name="Id_size" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Visit">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id_room" Type="int" Nullable="false" />
+          <Property Name="Id_client" Type="int" Nullable="false" />
+          <Property Name="Check_in" Type="date" />
+          <Property Name="Check_out" Type="date" />
+        </EntityType>
+        <Association Name="FK__Rooms__Id_size__3C69FB99">
+          <End Role="Room_prices" Type="Self.Room_prices" Multiplicity="1" />
+          <End Role="Rooms" Type="Self.Rooms" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Room_prices">
+              <PropertyRef Name="Id_size" />
+            </Principal>
+            <Dependent Role="Rooms">
+              <PropertyRef Name="Id_size" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Visit__Id_client__3E52440B">
+          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="Visit" Type="Self.Visit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Visit">
+              <PropertyRef Name="Id_client" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Visit__Id_room__3D5E1FD2">
+          <End Role="Rooms" Type="Self.Rooms" Multiplicity="1" />
+          <End Role="Visit" Type="Self.Visit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rooms">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Visit">
+              <PropertyRef Name="Id_room" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="HotelManagementDBModelStoreContainer">
+          <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Room_prices" EntityType="Self.Room_prices" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Rooms" EntityType="Self.Rooms" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Visit" EntityType="Self.Visit" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Rooms__Id_size__3C69FB99" Association="Self.FK__Rooms__Id_size__3C69FB99">
+            <End Role="Room_prices" EntitySet="Room_prices" />
+            <End Role="Rooms" EntitySet="Rooms" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Visit__Id_client__3E52440B" Association="Self.FK__Visit__Id_client__3E52440B">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Visit" EntitySet="Visit" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Visit__Id_room__3D5E1FD2" Association="Self.FK__Visit__Id_room__3D5E1FD2">
+            <End Role="Rooms" EntitySet="Rooms" />
+            <End Role="Visit" EntitySet="Visit" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="HotelManagementDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Phone_number" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Visits" Relationship="Self.FK__Visit__Id_client__3E52440B" FromRole="Client" ToRole="Visit" />
+        </EntityType>
+        <EntityType Name="Room_prices">
+          <Key>
+            <PropertyRef Name="Id_size" />
+          </Key>
+          <Property Name="Id_size" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Price" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="Rooms" Relationship="Self.FK__Rooms__Id_size__3C69FB99" FromRole="Room_prices" ToRole="Rooms" />
+        </EntityType>
+        <EntityType Name="Room">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Number" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="Id_size" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Room_prices" Relationship="Self.FK__Rooms__Id_size__3C69FB99" FromRole="Rooms" ToRole="Room_prices" />
+          <NavigationProperty Name="Visits" Relationship="Self.FK__Visit__Id_room__3D5E1FD2" FromRole="Rooms" ToRole="Visit" />
+        </EntityType>
+        <EntityType Name="Visit">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_room" Type="Int32" Nullable="false" />
+          <Property Name="Id_client" Type="Int32" Nullable="false" />
+          <Property Name="Check_in" Type="DateTime" Precision="0" />
+          <Property Name="Check_out" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Client" Relationship="Self.FK__Visit__Id_client__3E52440B" FromRole="Visit" ToRole="Client" />
+          <NavigationProperty Name="Room" Relationship="Self.FK__Visit__Id_room__3D5E1FD2" FromRole="Visit" ToRole="Rooms" />
+        </EntityType>
+        <Association Name="FK__Visit__Id_client__3E52440B">
+          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="Visit" Type="Self.Visit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Visit">
+              <PropertyRef Name="Id_client" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Rooms__Id_size__3C69FB99">
+          <End Role="Room_prices" Type="Self.Room_prices" Multiplicity="1" />
+          <End Role="Rooms" Type="Self.Room" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Room_prices">
+              <PropertyRef Name="Id_size" />
+            </Principal>
+            <Dependent Role="Rooms">
+              <PropertyRef Name="Id_size" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Visit__Id_room__3D5E1FD2">
+          <End Role="Rooms" Type="Self.Room" Multiplicity="1" />
+          <End Role="Visit" Type="Self.Visit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rooms">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Visit">
+              <PropertyRef Name="Id_room" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="HotelManagerDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Clients" EntityType="Self.Client" />
+          <EntitySet Name="Room_prices" EntityType="Self.Room_prices" />
+          <EntitySet Name="Rooms" EntityType="Self.Room" />
+          <EntitySet Name="Visits" EntityType="Self.Visit" />
+          <AssociationSet Name="FK__Visit__Id_client__3E52440B" Association="Self.FK__Visit__Id_client__3E52440B">
+            <End Role="Client" EntitySet="Clients" />
+            <End Role="Visit" EntitySet="Visits" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Rooms__Id_size__3C69FB99" Association="Self.FK__Rooms__Id_size__3C69FB99">
+            <End Role="Room_prices" EntitySet="Room_prices" />
+            <End Role="Rooms" EntitySet="Rooms" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Visit__Id_room__3D5E1FD2" Association="Self.FK__Visit__Id_room__3D5E1FD2">
+            <End Role="Rooms" EntitySet="Rooms" />
+            <End Role="Visit" EntitySet="Visits" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="HotelManagementDBModelStoreContainer" CdmEntityContainer="HotelManagerDBEntities">
+          <EntitySetMapping Name="Clients">
+            <EntityTypeMapping TypeName="HotelManagementDBModel.Client">
+              <MappingFragment StoreEntitySet="Client">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Phone_number" ColumnName="Phone_number" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Room_prices">
+            <EntityTypeMapping TypeName="HotelManagementDBModel.Room_prices">
+              <MappingFragment StoreEntitySet="Room_prices">
+                <ScalarProperty Name="Id_size" ColumnName="Id_size" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rooms">
+            <EntityTypeMapping TypeName="HotelManagementDBModel.Room">
+              <MappingFragment StoreEntitySet="Rooms">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="Id_size" ColumnName="Id_size" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Visits">
+            <EntityTypeMapping TypeName="HotelManagementDBModel.Visit">
+              <MappingFragment StoreEntitySet="Visit">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Id_room" ColumnName="Id_room" />
+                <ScalarProperty Name="Id_client" ColumnName="Id_client" />
+                <ScalarProperty Name="Check_in" ColumnName="Check_in" />
+                <ScalarProperty Name="Check_out" ColumnName="Check_out" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

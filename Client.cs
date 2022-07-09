@@ -20,7 +20,7 @@ namespace HotelManager
             this.Visits = new HashSet<Visit>();
         }
     
-        public int Id_client { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
         public string Phone_number { get; set; }

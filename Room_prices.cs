@@ -20,7 +20,7 @@ namespace HotelManager
             this.Rooms = new HashSet<Room>();
         }
     
-        public short Id_size { get; set; }
+        public int Id_size { get; set; }
         public Nullable<decimal> Price { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

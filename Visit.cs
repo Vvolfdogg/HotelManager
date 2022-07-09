@@ -14,13 +14,11 @@ namespace HotelManager
     
     public partial class Visit
     {
-        public int Id_visit { get; set; }
+        public int Id { get; set; }
         public int Id_room { get; set; }
         public int Id_client { get; set; }
-        public System.DateTime Check_in { get; set; }
+        public Nullable<System.DateTime> Check_in { get; set; }
         public Nullable<System.DateTime> Check_out { get; set; }
-        public Nullable<decimal> Parking { get; set; }
-        public Nullable<decimal> Breakfast { get; set; }
     
         public virtual Client Client { get; set; }
         public virtual Room Room { get; set; }
