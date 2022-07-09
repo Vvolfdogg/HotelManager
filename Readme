@@ -1,0 +1,48 @@
+Queries for creating tables and inserting some data:
+
+create table [dbo].[Room_prices](
+	[Id_size] int not null primary key identity,
+	[Price] money
+);
+GO
+
+create table [dbo].[Rooms](
+	[Id] int not null primary key identity,
+	[Number] varchar(3),
+	[Id_size] int references Room_prices(Id_size) NOT NULL,
+);
+GO
+
+create table [dbo].[Client](
+	[Id] int not null primary key identity,
+	[Name] varchar(30) NULL,
+	[Surname] varchar(50) NULL,
+	[Phone_number] varchar(11) NULL
+);
+GO
+
+create table [dbo].[Visit](
+	[Id] int not null primary key identity,
+	[Id_room] int references Rooms(Id) NOT NULL,
+	[Id_client] int references Client(Id) NOT NULL,
+	[Check_in] date NULL,
+	[Check_out] date NULL,
+);
+
+
+
+insert into Room_prices values(200.00);
+insert into Room_prices values(260.00);
+insert into Room_prices values(340.00);
+insert into Room_prices values(400.00);
+
+insert into Rooms values('101',1);
+insert into Rooms values('102',1);
+insert into Rooms values('103',2);
+insert into Rooms values('104',2);
+insert into Rooms values('105',2);
+insert into Rooms values('201',2);
+insert into Rooms values('202',3);
+insert into Rooms values('203',3);
+insert into Rooms values('204',3);
+insert into Rooms values('205',4);
